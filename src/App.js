@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import {authLogin, authLogout, authSignup} from "./auth";
 import { getTodos } from "./api";
