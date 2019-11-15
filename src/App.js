@@ -3,7 +3,6 @@ import './App.css';
 import {authLogin, authLogout, authSignup} from "./auth";
 import { getTodos } from "./api";
 
-import ApolloClientBoost from 'apollo-boost';
 import { ApolloClient } from 'apollo-client';
 import { gql } from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -41,23 +40,9 @@ function App() {
    * Apollo
    */
 
-  const clientBoost = new ApolloClientBoost({
-    uri: 'http://localhost:3000/graphql',
-    fetchOptions: {
-      credentials: 'include', // does not include cookies
-    },
-    request: async operation => {
-      operation.setContext({
-        headers: {
-          'X-CSRF-TOKEN': localStorage.csrf
-        }
-      })
-    }
-  });
-
   const client = new ApolloClient({
     link: createHttpLink({
-      uri: 'http://localhost:3000/graphql', // only local URI (localhost:3001) -> ApolloClient from 'apollo-client'
+      uri: 'http://localhost:3000/graphql',
       credentials: 'include',
       headers: {
         'X-CSRF-TOKEN': localStorage.csrf
